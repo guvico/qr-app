@@ -6,6 +6,7 @@
 </head>
 <body>
     <!-- <h1> <span id='counter'></span> </h1> -->
+    <!-- <div id="content"></div> -->
     <script type="text/javascript">
         // var counterElt = document.getElementById("counter");
         function directURL() {
@@ -16,6 +17,43 @@
                 iosPlatforms = ['iPhone', 'iPad', 'iPod'],
                 os = null;
 
+                const temp = window;
+                console.log(temp, 'temp');
+                console.log(temp.navigator, 'temp.navigator');
+                console.log(temp.navigator.userAgent, 'temp.navigator.userAgent');
+                console.log(window.screen.availHeight, 'sss');
+                console.log(window.screen.availWidth, 'sss');
+                console.log(window.history, 'sss');
+                console.log(window.navigator.cookieEnabled, 'sss');
+                console.log(window.navigator.appCodeName, 'sss');
+                console.log(window.navigator.platform, 'sss');
+                console.log(window.navigator.os, 'sss');
+
+                const token = window.screen.availWidth+
+                window.screen.availHeight+
+                window.navigator.appCodeName+
+                window.navigator.platform
+                // window.navigator.iosPlatforms+
+                // window.navigator.hardwareConcurrency+
+                // window.navigator.os+
+                // window.navigator.mediaDevices.enumerateDevices()+
+                // window.navigator.vendor+
+                // window.navigator.vendorSub
+                // document.getElementById("content").innerHTML = token
+
+                const get = window.navigator.ur
+                // const url = `http://?code=0389888952`
+                let query = getParameterByName('code') || null;
+                let url = `https://service.guvico.com/invite/set_invite`
+
+            if(query !== null) {
+              url = `https://service.guvico.com/invite/set_invite?code=${query}`
+            } else {
+              url = `https://service.guvico.com/invite/set_invite`
+            }
+
+                  // console.log(url, 'url');
+                
             if (macosPlatforms.indexOf(platform) !== -1) {
                 os = 'Mac OS';
             } else if (iosPlatforms.indexOf(platform) !== -1) {
@@ -27,6 +65,13 @@
             } else if (!os && /Linux/.test(platform)) {
                 os = 'Linux';
             }
+            const payload = {
+              token: token
+              // window: JSON.parse(temp.navigator)
+            }
+
+             callAPI('POST', url, payload).then()
+
             if (os === "iOS") {
                 // window.location.href = `itms-apps://itunes.apple.com/app/apple-store/id6443966297?mt=8`;
 
@@ -49,6 +94,90 @@
         }
         // var intervalId = setInterval(decreaseCounter, 0);
 
+        async function getAPI(method, url) {
+  // Default options are marked with *
+  // return new Promise((resolve, reject) => {
+    return await fetch(url, {
+      method: method || 'GET', // *GET, POST, PUT, DELETE, etc.
+      mode: 'cors', // no-cors, *cors, same-origin
+      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: 'same-origin', // include, *same-origin, omit
+      headers: {
+        'Content-Type': 'application/json'
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      redirect: 'follow', // manual, *follow, error
+      referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+    }).then(response => {
+      console.log(response.status, 'response');
+      return response.json().then(data => {
+        console.log(data, 'data');
+        if(response.status !== 200) {
+          // callToast(data.message || data, "fail");
+        } else {
+          // callToast('Cập nhật thành công', "success");
+        }
+        return {
+          data: data,
+          status: response.status
+        }
+      })
+    }).catch(err => {
+      console.log(err, 'err');
+    });
+    // });
+
+   // parses JSON response into native JavaScript objects
+}
+
+
+async function callAPI(method, url, payload) {
+  console.log(payload, 'payload');
+  // Default options are marked with *
+  // return new Promise((resolve, reject) => {
+    return await fetch(url, {
+      method: method || 'GET', // *GET, POST, PUT, DELETE, etc.
+      mode: 'cors', // no-cors, *cors, same-origin
+      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: 'same-origin', // include, *same-origin, omit
+      headers: {
+        'Content-Type': 'application/json'
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      redirect: 'follow', // manual, *follow, error
+      referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+      body: JSON.stringify(payload) // body data type must match "Content-Type" header
+    }).then(response => {
+      console.log(response.status, 'response');
+      return response.json().then(data => {
+        console.log(data, 'data');
+        if(response.status !== 200) {
+          callToast(data.message || data, "fail");
+        } else {
+          callToast('Cập nhật thành công', "success");
+        }
+        return {
+          data: data,
+          status: response.status
+        }
+      })
+    }).catch(err => {
+      console.log(err, 'err');
+    });
+    // });
+
+   // parses JSON response into native JavaScript objects
+}
+
+
+function getParameterByName(name, url = window.location.href) {
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
         window.onload = directURL;
     </script>
 
