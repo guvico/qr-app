@@ -43,12 +43,12 @@
                 const get = window.navigator.ur
                 // const url = `http://?code=0389888952`
                 let query = getParameterByName('code') || null;
-                let url = `https://service.guvico.com/invite/set_invite`
+                let url = `https://server.guvico.com/invite/set_invite`
 
             if(query !== null) {
-              url = `https://service.guvico.com/invite/set_invite?code=${query}`
+              url = `https://server.guvico.com/invite/set_invite?code=${query}`
             } else {
-              url = `https://service.guvico.com/invite/set_invite`
+              url = `https://server.guvico.com/invite/set_invite`
             }
 
                   // console.log(url, 'url');
