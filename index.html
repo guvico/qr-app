@@ -6,10 +6,14 @@
 </head>
 <body>
     <!-- <h1> <span id='counter'></span> </h1> -->
-    <!-- <div id="content"></div> -->
+    <div id="content"></div>
     <script type="text/javascript">
         // var counterElt = document.getElementById("counter");
-        function directURL() {
+
+        document.addEventListener("content", directURL);
+
+        function directURL(event) {
+            event.preventDefault();
             var userAgent = window.navigator.userAgent,
                 platform = window.navigator.platform,
                 macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
