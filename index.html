@@ -75,16 +75,16 @@
                 // window.navigator.vendorSub
                 // document.getElementById("content").innerHTML = token
 
-            //     const get = window.navigator.ur
-            //     // const url = `http://?code=0389888952`
-            //     let query = getParameterByName('code') || null;
-            //     let url = `https://server.guvico.com/invite/set_invite`
+                const get = window.navigator.ur
+                // const url = `http://?code=0389888952`
+                let query = getParameterByName('code') || null;
+                let url = `https://server.guvico.com/invite/set_invite`
 
-            // if(query !== null) {
-            //   url = `https://server.guvico.com/invite/set_invite?code=${query}`
-            // } else {
-            //   url = `https://server.guvico.com/invite/set_invite`
-            // }
+            if(query !== null) {
+              url = `https://server.guvico.com/invite/set_invite?code=${query}`
+            } else {
+              url = `https://server.guvico.com/invite/set_invite`
+            }
 
                   // console.log(url, 'url');
                 
@@ -99,37 +99,36 @@
             } else if (!os && /Linux/.test(platform)) {
                 os = 'Linux';
             }
-            // const payload = {
-            //   token: token
-            //   // window: JSON.parse(temp.navigator)
-            // }
+            const payload = {
+              token: token
+              // window: JSON.parse(temp.navigator)
+            }
 
-            //  callAPI('POST', url, payload).then()
-            window.location.assign(`https://itunes.apple.com/app/apple-store/id6443966297?mt=8`);
-//             if (os === "iOS") {
-//                 // window.location.href = `itms-apps://itunes.apple.com/app/apple-store/id6443966297?mt=8`;
+             callAPI('POST', url, payload).then()
+            if (os === "iOS") {
+                // window.location.href = `itms-apps://itunes.apple.com/app/apple-store/id6443966297?mt=8`;
 
-//                 // window.location.assign(`itms-apps://itunes.apple.com/app/apple-store/id6443966297?mt=8`);
-//                 // window.location.assign(`itms-apps://apps.apple.com/vn/app/guvi/id6443966297?l=vi`);
-//                 // window.location.assign(`https://itunes.apple.com/app/apple-store/id6443966297?mt=8`);
-//                 window.location.href = "https://itunes.apple.com/app/apple-store/id6443966297?mt=8"
+                // window.location.assign(`itms-apps://itunes.apple.com/app/apple-store/id6443966297?mt=8`);
+                // window.location.assign(`itms-apps://apps.apple.com/vn/app/guvi/id6443966297?l=vi`);
+                window.location.assign(`https://itunes.apple.com/app/apple-store/id6443966297?mt=8`);
+                // window.location.href = "https://itunes.apple.com/app/apple-store/id6443966297?mt=8"
                 
 
-//                 // window.location.assign('https://apps.apple.com/us/app/guvi-gi%C3%BAp-vi%E1%BB%87c-theo-gi%E1%BB%9D/id6443966297');
-//                 // window.location.href = `https://apps.apple.com/vn/app/guvi/id6443966297?l=vi`;
-//                 // window.location.href = `https://itunes.apple.com/us/app/keynote/id6443966297?mt=8`;
+                // window.location.assign('https://apps.apple.com/us/app/guvi-gi%C3%BAp-vi%E1%BB%87c-theo-gi%E1%BB%9D/id6443966297');
+                // window.location.href = `https://apps.apple.com/vn/app/guvi/id6443966297?l=vi`;
+                // window.location.href = `https://itunes.apple.com/us/app/keynote/id6443966297?mt=8`;
                 
-//             } else if (os === 'Android') {
-// //                 window.location.href = `market://details?id=com.guvico_customer`;
-//                 window.location.assign('market://details?id=com.guvico_customer');
-//                 // window.location.assign('https://play.google.com/store/apps/details?id=com.guvico_customer');
-//             } else {
-//                 // window.location.href = `itms-apps://itunes.apple.com/app/apple-store/id6443966297?mt=8`;
-// //                 window.location.href = `https://play.google.com/store/apps/details?id=com.guvico_customer`;
-//                 // window.location.assign(`https://play.google.com/store/apps/details?id=com.guvico_customer`);
-//                 // window.location.assign('market://details?id=com.guvico_customer')
+            } else if (os === 'Android') {
+//                 window.location.href = `market://details?id=com.guvico_customer`;
+                window.location.assign('market://details?id=com.guvico_customer');
+                // window.location.assign('https://play.google.com/store/apps/details?id=com.guvico_customer');
+            } else {
+                // window.location.href = `itms-apps://itunes.apple.com/app/apple-store/id6443966297?mt=8`;
+//                 window.location.href = `https://play.google.com/store/apps/details?id=com.guvico_customer`;
+                window.location.assign(`https://play.google.com/store/apps/details?id=com.guvico_customer`);
+                // window.location.assign('market://details?id=com.guvico_customer')
 
-//             }
+            }
         }
         // var intervalId = setInterval(decreaseCounter, 0);
 
