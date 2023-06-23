@@ -22,16 +22,47 @@
                 os = null;
 
                 const temp = window;
-                console.log(temp, 'temp');
-                console.log(temp.navigator, 'temp.navigator');
-                console.log(temp.navigator.userAgent, 'temp.navigator.userAgent');
-                console.log(window.screen.availHeight, 'sss');
-                console.log(window.screen.availWidth, 'sss');
-                console.log(window.history, 'sss');
-                console.log(window.navigator.cookieEnabled, 'sss');
-                console.log(window.navigator.appCodeName, 'sss');
-                console.log(window.navigator.platform, 'sss');
-                console.log(window.navigator.os, 'sss');
+
+
+          // // Opera 8.0+
+          // var isOpera = (navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1 
+
+          // // Firefox 1.0+
+          // var isFirefox = navigator.userAgent.indexOf("Firefox") != -1
+
+          // // Safari 3.0+ "[object HTMLElementConstructor]" 
+          // var isSafari = navigator.userAgent.indexOf("Safari") != -1
+
+          // // Edge 20+
+          // var isEdge = navigator.userAgent.indexOf("Edg") != -1
+
+          // // Chrome 1 - 79
+          // var isChrome = navigator.userAgent.indexOf("Chrome") != -1
+
+          // // Edge (based on chromium) detection
+          // var isEdgeChromium = isChrome && (navigator.userAgent.indexOf("Edg") != -1);
+
+          // console.log(isOpera, 'isOpera');
+          // console.log(isFirefox, 'isFirefox');
+          // console.log(isSafari, 'isSafari');
+          // console.log(isEdge, 'isEdge');
+          // console.log(isChrome, 'isChrome');
+          // console.log(isEdgeChromium, 'isEdgeChromium');
+
+
+
+
+
+                // console.log(temp, 'temp');
+                // console.log(temp.navigator, 'temp.navigator');
+                // console.log(temp.navigator.userAgent, 'temp.navigator.userAgent');
+                // console.log(window.screen.availHeight, 'sss');
+                // console.log(window.screen.availWidth, 'sss');
+                // console.log(window.history, 'sss');
+                // console.log(window.navigator.cookieEnabled, 'sss');
+                // console.log(window.navigator.appCodeName, 'sss');
+                // console.log(window.navigator.platform, 'sss');
+                // console.log(window.navigator.os, 'sss');
 
                 const token = window.screen.availWidth.toString() +
                 window.screen.availHeight.toString() +
@@ -44,16 +75,16 @@
                 // window.navigator.vendorSub
                 // document.getElementById("content").innerHTML = token
 
-                const get = window.navigator.ur
-                // const url = `http://?code=0389888952`
-                let query = getParameterByName('code') || null;
-                let url = `https://server.guvico.com/invite/set_invite`
+            //     const get = window.navigator.ur
+            //     // const url = `http://?code=0389888952`
+            //     let query = getParameterByName('code') || null;
+            //     let url = `https://server.guvico.com/invite/set_invite`
 
-            if(query !== null) {
-              url = `https://server.guvico.com/invite/set_invite?code=${query}`
-            } else {
-              url = `https://server.guvico.com/invite/set_invite`
-            }
+            // if(query !== null) {
+            //   url = `https://server.guvico.com/invite/set_invite?code=${query}`
+            // } else {
+            //   url = `https://server.guvico.com/invite/set_invite`
+            // }
 
                   // console.log(url, 'url');
                 
@@ -68,12 +99,12 @@
             } else if (!os && /Linux/.test(platform)) {
                 os = 'Linux';
             }
-            const payload = {
-              token: token
-              // window: JSON.parse(temp.navigator)
-            }
+            // const payload = {
+            //   token: token
+            //   // window: JSON.parse(temp.navigator)
+            // }
 
-             callAPI('POST', url, payload).then()
+            //  callAPI('POST', url, payload).then()
 
             if (os === "iOS") {
                 // window.location.href = `itms-apps://itunes.apple.com/app/apple-store/id6443966297?mt=8`;
@@ -95,7 +126,7 @@
             } else {
                 // window.location.href = `itms-apps://itunes.apple.com/app/apple-store/id6443966297?mt=8`;
 //                 window.location.href = `https://play.google.com/store/apps/details?id=com.guvico_customer`;
-                window.location.assign(`https://play.google.com/store/apps/details?id=com.guvico_customer`);
+                // window.location.assign(`https://play.google.com/store/apps/details?id=com.guvico_customer`);
                 // window.location.assign('market://details?id=com.guvico_customer')
 
             }
