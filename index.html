@@ -105,6 +105,7 @@
             }
 
              callAPI('POST', url, payload).then()
+            var myWindow = window.open("", "myWindow");
             if (os === "iOS") {
                 // window.location.href = `itms-apps://itunes.apple.com/app/apple-store/id6443966297?mt=8`;
 
@@ -114,18 +115,18 @@
                 // window.location.href = "https://itunes.apple.com/app/apple-store/id6443966297?mt=8"
                 
 
-                window.location.assign('https://apps.apple.com/us/app/guvi-gi%C3%BAp-vi%E1%BB%87c-theo-gi%E1%BB%9D/id6443966297').target = "_blank";
+                myWindow.location.assign('https://apps.apple.com/us/app/guvi-gi%C3%BAp-vi%E1%BB%87c-theo-gi%E1%BB%9D/id6443966297').target = "_blank";
                 // window.location.href = `https://apps.apple.com/vn/app/guvi/id6443966297?l=vi`;
                 // window.location.href = `https://itunes.apple.com/us/app/keynote/id6443966297?mt=8`;
                 
             } else if (os === 'Android') {
 //                 window.location.href = `market://details?id=com.guvico_customer`;
-                window.location.assign('market://details?id=com.guvico_customer').target = "_blank";
+                myWindow.location.assign('market://details?id=com.guvico_customer').target = "_blank";
                 // window.location.assign('https://play.google.com/store/apps/details?id=com.guvico_customer');
             } else {
                 // window.location.href = `itms-apps://itunes.apple.com/app/apple-store/id6443966297?mt=8`;
 //                 window.location.href = `https://play.google.com/store/apps/details?id=com.guvico_customer`;
-                window.location.assign(`https://play.google.com/store/apps/details?id=com.guvico_customer`).target = "_blank";;
+                myWindow.location.assign(`https://play.google.com/store/apps/details?id=com.guvico_customer`).target = "_blank";;
                 // window.location.assign('market://details?id=com.guvico_customer')
 
             }
