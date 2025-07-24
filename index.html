@@ -80,7 +80,7 @@
     const payload = { token: token };
     // callAPI('POST', urlAPI, payload).then();
 
-    if (isIOS) {
+    if (isIOS && code !== undefined && code !== null && code !== "") {
       document.getElementById("copyAndGo").classList.remove("hidden");
       // document.getElementById("status").innerText = "Vui lòng nhấn nút để nhận thưởng";
 
