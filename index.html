@@ -63,6 +63,7 @@
   <script>
     const query = new URLSearchParams(window.location.search);
     const code = query.get("code") || "";
+
     const userAgent = window.navigator.userAgent;
 
     const iosPlatforms = ['iPhone', 'iPad', 'iPod'];
@@ -104,8 +105,9 @@
         window.location.href = "https://apps.apple.com/app/id6443966297";
       }
       else if (isAndroid) {
-        // let referrer = code ? `&referrer=code%3D${encodeURIComponent(code)}` : "";
-        let referrer = code ? `&referrer=${encodeURIComponent(code)}` : "";
+        const urlHasCodeParam = window.location.search.includes("code=");
+        const code = urlHasCodeParam ? query.get("code") : "";
+        let referrer = urlHasCodeParam && code ? `&referrer=${encodeURIComponent(code)}` : "";
         window.location.href = `https://play.google.com/store/apps/details?id=com.guvico_customer${referrer}`;
       } else {
         window.location.replace(`https://play.google.com/store/apps/details?id=com.guvico_customer`);
