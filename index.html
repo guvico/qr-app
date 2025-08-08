@@ -105,8 +105,10 @@
         window.location.href = "https://apps.apple.com/app/id6443966297";
       }
       else if (isAndroid) {
-        const urlHasCodeParam = window.location.search.includes("code=");
-        const code = urlHasCodeParam ? query.get("code") : "";
+        // const urlHasCodeParam = window.location.search.includes("code=");
+        const urlHasCodeParam = query.has("code");
+
+        const code = urlHasCodeParam ? query.get("code").trim() : "";
         let referrer = urlHasCodeParam && code ? `&referrer=${encodeURIComponent(code)}` : "";
         window.location.href = `https://play.google.com/store/apps/details?id=com.guvico_customer${referrer}`;
       } else {
