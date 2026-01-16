@@ -49,14 +49,6 @@
       color: #777;
       margin-top: 8px;
     }
-    #openPlayStore {
-      display: inline-block;
-      margin-top: 12px;
-      color: #1a73e8;
-      word-break: break-all;
-      text-decoration: none;
-      font-size: 13px;
-    }
   </style>
 </head>
 <body>
@@ -65,7 +57,6 @@
     <img class="banner" src="https://www.guvico.com/wp-content/uploads/2022/03/Thiet-ke-chua-co-ten-5.png" alt="Guvi Banner"/>
     <p>Nhấn nút bên dưới để copy mã giới thiệu và đến App Store.</p>
     <button id="copyAndGo" class="hidden">Copy & tải app ngay</button>
-    <a id="openPlayStore" class="hidden" target="_blank" rel="noopener noreferrer"></a>
     <p id="status" class="small">Đang xử lý...</p>
   </div>
 
@@ -118,11 +109,6 @@
         // const urlHasCodeParam = window.location.search.includes("code=");
         const urlHasCodeParam = query.has("code");
 
-        console.log(urlHasCodeParam, 'urlHasCodeParam');
-        console.log(code, 'code');
-        
-        
-
         const code = (query.get("code") || "").trim();
         // Google Play expects referrer to be a query-like string (key=value). App will parse and extract "123".
         let referrer = urlHasCodeParam && code ? `&referrer=${encodeURIComponent(`code=${code}`)}` : "";
@@ -130,40 +116,11 @@
         const playStoreWebUrl = `https://play.google.com/store/apps/details?id=com.guvico_customer${referrer}`;
 
         if (debug) {
-          const el = document.getElementById("openPlayStore");
-          el.classList.remove("hidden");
-          el.href = playStoreWebUrl;
-          el.textContent = `Mở CH Play (debug): ${playStoreWebUrl}`;
-          document.getElementById("status").innerText = `Debug: code="${code}", referrer="${referrer}"`;
+          document.getElementById("status").innerText = playStoreWebUrl;
+          return;
         }
 
-        if (urlHasCodeParam && code) {
-          // Auto-redirect is supported, but some devices/browsers may drop `referrer` when switching apps.
-          // We keep a visible fallback button/link for reliability.
-          const btn = document.getElementById("copyAndGo");
-          btn.classList.remove("hidden");
-          btn.innerText = "Copy mã & mở CH Play";
-          document.getElementById("status").innerText = "Đang chuyển đến CH Play...";
-
-          btn.addEventListener("click", async () => {
-            try {
-              await navigator.clipboard.writeText(code);
-            } catch (e) {
-              // Ignore clipboard errors; user can still install and/or copy manually.
-            } finally {
-              window.location.href = playStoreWebUrl;
-            }
-          });
-
-          if (!debug) {
-            setTimeout(() => {
-              window.location.href = playStoreWebUrl;
-            }, 10000);
-          }
-        } else {
-          // No code: redirect straight to Play Store.
-          window.location.href = playStoreWebUrl;
-        }
+        window.location.href = playStoreWebUrl;
       } else {
         window.location.replace(`https://play.google.com/store/apps/details?id=com.guvico_customer`);
       }
