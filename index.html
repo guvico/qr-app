@@ -123,7 +123,6 @@
         let referrer = urlHasCodeParam && code ? `&referrer=${encodeURIComponent(`code=${code}`)}` : "";
 
         const playStoreWebUrl = `https://play.google.com/store/apps/details?id=com.guvico_customer${referrer}`;
-        const playStoreAppUrl = `market://details?id=com.guvico_customer${referrer}`;
 
         if (debug) {
           const el = document.getElementById("openPlayStore");
@@ -132,11 +131,9 @@
           el.textContent = `Mở CH Play (debug): ${playStoreWebUrl}`;
           document.getElementById("status").innerText = `Debug: code="${code}", referrer="${referrer}"`;
         } else {
-          // Prefer opening Play Store app directly; fallback to web URL.
-          window.location.href = playStoreAppUrl;
-          setTimeout(() => {
-            window.location.href = playStoreWebUrl;
-          }, 500);
+          // Use the web URL so the `referrer` query param is preserved reliably.
+          // Opening `market://` first can drop `referrer` on some devices/browsers.
+          window.location.href = playStoreWebUrl;
         }
       } else {
         window.location.replace(`https://play.google.com/store/apps/details?id=com.guvico_customer`);

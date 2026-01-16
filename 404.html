@@ -40,11 +40,8 @@
                 // window.location.href = `https://itunes.apple.com/us/app/keynote/id6443966297?mt=8`;
                 
             } else if (os === 'Android') {
-                // Prefer opening Play Store app directly; fallback to web URL.
-                window.location.assign(`market://details?id=com.guvico_customer${referrer}`)
-                setTimeout(() => {
-                    window.location.assign(`https://play.google.com/store/apps/details?id=com.guvico_customer${referrer}`);
-                }, 500);
+                // Use the web URL so the `referrer` query param is preserved reliably.
+                window.location.assign(`https://play.google.com/store/apps/details?id=com.guvico_customer${referrer}`);
             } else {
                 // window.location.href = `itms-apps://itunes.apple.com/app/apple-store/id6443966297?mt=8`;
                 // window.location.href = `https://play.google.com/store/apps/details?id=com.guvico_customer`;
