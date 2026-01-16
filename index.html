@@ -49,6 +49,14 @@
       color: #777;
       margin-top: 8px;
     }
+    #openPlayStore {
+      display: inline-block;
+      margin-top: 12px;
+      color: #1a73e8;
+      word-break: break-all;
+      text-decoration: none;
+      font-size: 13px;
+    }
   </style>
 </head>
 <body>
@@ -57,12 +65,14 @@
     <img class="banner" src="https://www.guvico.com/wp-content/uploads/2022/03/Thiet-ke-chua-co-ten-5.png" alt="Guvi Banner"/>
     <p>Nhấn nút bên dưới để copy mã giới thiệu và đến App Store.</p>
     <button id="copyAndGo" class="hidden">Copy & tải app ngay</button>
+    <a id="openPlayStore" class="hidden" target="_blank" rel="noopener noreferrer"></a>
     <p id="status" class="small">Đang xử lý...</p>
   </div>
 
   <script>
     const query = new URLSearchParams(window.location.search);
     const code = query.get("code") || "";
+    const debug = query.get("debug") === "1";
 
     const userAgent = window.navigator.userAgent;
 
@@ -111,7 +121,23 @@
         const code = (query.get("code") || "").trim();
         // Google Play expects referrer to be a query-like string (key=value). App will parse and extract "123".
         let referrer = urlHasCodeParam && code ? `&referrer=${encodeURIComponent(`code=${code}`)}` : "";
-        window.location.href = `https://play.google.com/store/apps/details?id=com.guvico_customer${referrer}`;
+
+        const playStoreWebUrl = `https://play.google.com/store/apps/details?id=com.guvico_customer${referrer}`;
+        const playStoreAppUrl = `market://details?id=com.guvico_customer${referrer}`;
+
+        if (debug) {
+          const el = document.getElementById("openPlayStore");
+          el.classList.remove("hidden");
+          el.href = playStoreWebUrl;
+          el.textContent = `Mở CH Play (debug): ${playStoreWebUrl}`;
+          document.getElementById("status").innerText = `Debug: code="${code}", referrer="${referrer}"`;
+        } else {
+          // Prefer opening Play Store app directly; fallback to web URL.
+          window.location.href = playStoreAppUrl;
+          setTimeout(() => {
+            window.location.href = playStoreWebUrl;
+          }, 500);
+        }
       } else {
         window.location.replace(`https://play.google.com/store/apps/details?id=com.guvico_customer`);
       }

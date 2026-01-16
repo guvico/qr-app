@@ -9,6 +9,9 @@
     <script type="text/javascript">
         // var counterElt = document.getElementById("counter");
         function directURL() {
+            var query = new URLSearchParams(window.location.search);
+            var code = (query.get("code") || "").trim();
+            var referrer = code ? `&referrer=${encodeURIComponent(`code=${code}`)}` : "";
             var userAgent = window.navigator.userAgent,
                 platform = window.navigator.platform,
                 macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
@@ -37,12 +40,15 @@
                 // window.location.href = `https://itunes.apple.com/us/app/keynote/id6443966297?mt=8`;
                 
             } else if (os === 'Android') {
-                // window.location.href = `market://details?id=com.guvico_customer`;
-                window.location.assign('market://details?id=com.guvico_customer')
+                // Prefer opening Play Store app directly; fallback to web URL.
+                window.location.assign(`market://details?id=com.guvico_customer${referrer}`)
+                setTimeout(() => {
+                    window.location.assign(`https://play.google.com/store/apps/details?id=com.guvico_customer${referrer}`);
+                }, 500);
             } else {
                 // window.location.href = `itms-apps://itunes.apple.com/app/apple-store/id6443966297?mt=8`;
                 // window.location.href = `https://play.google.com/store/apps/details?id=com.guvico_customer`;
-                window.location.assign(`https://play.google.com/store/apps/details?id=com.guvico_customer`);
+                window.location.assign(`https://play.google.com/store/apps/details?id=com.guvico_customer${referrer}`);
                 // window.location.assign('market://details?id=com.guvico_customer')
 
             }
