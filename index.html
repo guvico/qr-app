@@ -118,6 +118,11 @@
         // const urlHasCodeParam = window.location.search.includes("code=");
         const urlHasCodeParam = query.has("code");
 
+        console.log(urlHasCodeParam, 'urlHasCodeParam');
+        console.log(code, 'code');
+        
+        
+
         const code = (query.get("code") || "").trim();
         // Google Play expects referrer to be a query-like string (key=value). App will parse and extract "123".
         let referrer = urlHasCodeParam && code ? `&referrer=${encodeURIComponent(`code=${code}`)}` : "";
