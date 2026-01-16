@@ -117,10 +117,9 @@
 
         if (debug) {
           document.getElementById("status").innerText = playStoreWebUrl;
-          return;
+        } else {
+          window.location.href = playStoreWebUrl;
         }
-
-        window.location.href = playStoreWebUrl;
       } else {
         window.location.replace(`https://play.google.com/store/apps/details?id=com.guvico_customer`);
       }
