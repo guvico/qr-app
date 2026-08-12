@@ -91,19 +91,20 @@
             navigator.clipboard.writeText(code)
               .then(() => {
                 alert("Đã copy mã giới thiệu thành công!");
-                window.location.href = "https://apps.apple.com/app/id6443966297";
+                window.location.href = "https://apps.apple.com/vn/app/id6443966297";
               })
               .catch((err) => {
                 alert("Copy thất bại, vui lòng nhập tay sau khi cài app.");
-                window.location.href = "https://apps.apple.com/app/id6443966297";
+                window.location.href = "https://apps.apple.com/vn/app/id6443966297";
               });
           } else {
-            window.location.href = "https://apps.apple.com/app/id6443966297";
+            window.location.href = "https://apps.apple.com/vn/app/id6443966297";
           }
         });
 
       } else if (isIOS && (code === undefined || code === null || code === "")) {
-        window.location.href = "https://apps.apple.com/app/id6443966297";
+        // window.location.href = "https://apps.apple.com/app/id6443966297";
+        window.location.href = "https://apps.apple.com/vn/app/id6443966297";
       }
       else if (isAndroid) {
         // const urlHasCodeParam = window.location.search.includes("code=");
